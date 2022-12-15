@@ -1,6 +1,7 @@
 <?php
 class Database{
     public $connect;
+    public $statement;
     public function __construct($config,$username,$password){
         $dsn = "mysql:" . http_build_query($config,'',';');
         $this->connect = new PDO($dsn,$username,$password,[
@@ -9,8 +10,25 @@ class Database{
     }
 
     public function  query($query,$params = []){
-        $statement = $this->connect->prepare($query);
-        $statement->execute($params);
-        return $statement;
+        $this->statement = $this->connect->prepare($query);
+        $this->statement->execute($params);
+        return $this;
+    }
+    public function find(){
+        return $this->statement->fetch();
+    }
+    public function all(){
+        return $this->statement->fetchAll();
+    }
+    public function findOrFail(){
+        $result = $this->find();
+
+
+        if(!$result){
+            abort();
+            die();
+        }
+
+        return $result;
     }
 }

@@ -6,11 +6,8 @@
             <div class="px-4 py-6 sm:px-0">
                 <div class="h-96">
                     <ul>
-                        <?php foreach ($notes as $note): ?>
-                           <li><a class="text-lime-700 text-lg mb-4 hover:text-lime-500" href="note?id=<?= $note['id'] ?>"><?= htmlspecialchars($note["body"])  ?></a></li>
-                         <?php endforeach ?>
-
-                         <a class="bg-green-500 text-white text-white mt-4 py-2 px-4 inline-block rounded" href="/note/create">Create Note</a>
+                        <li><a class="inline-block py-4 text-blue-500" href="notes">Go back</a></li>
+                        <li><?= htmlspecialchars($note["body"]);  ?></li>
                     </ul>
                 </div>
             </div>
